@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  error:
+    include-details: always
+    
+#Base de datos
+spring:
+  datasource:
+    url: jdbc:mysql://mysqldb/exchangeratedb
+    username: root
+    password: root
+    platform: mysql
+    initialization-mode: always
+
+#Ouath2 Service
+signing:
+    key: "345345fsdfsf5345"
+
+security:
+    oauth2:
+        resource:
+            userInfoUri: http://ms-authentication:8886/user
