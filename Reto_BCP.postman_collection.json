@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "32f41ee8-f4c8-4cd0-bcfe-4709fbd7def8",
+		"name": "Reto BCP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/exchangerate/get/v1/{amount}/{originCurrency}/{destinationCurrency}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqbHVuYWgiLCJzY29wZSI6WyJ3ZWJjbGllbnQiXSwiYXV0aGVudGljYXRpb25fbmFtZSI6ImpsdW5haCIsImV4cCI6MTY0ODI3NjU4OSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjM4ZjVmNGQwLWMyY2YtNDFmYy04NDRiLTE2OGNjNGIyMDE3YSIsImNsaWVudF9pZCI6Im1pY3Jvc2VydmljaW9zIn0.XT0eSBnQ0E9F1L3Dty4VWlfkY-KhaSvamvSn6w28dy8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/exchangerate/get/v1/1000.5/PEN/USD",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"exchangerate",
+						"get",
+						"v1",
+						"1000.5",
+						"PEN",
+						"USD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/exchangerate/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqbHVuYWgiLCJzY29wZSI6WyJ3ZWJjbGllbnQiXSwiYXV0aGVudGljYXRpb25fbmFtZSI6ImpsdW5haCIsImV4cCI6MTY0ODI4MDAwMCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6ImE3NTFlMDE3LTQyNzktNGNhMS05ZjAxLWU2YTVjOTNiNGYwNyIsImNsaWVudF9pZCI6Im1pY3Jvc2VydmljaW9zIn0.RQcIYNRKKb-tLP48_zARp9iIqGS5c_Q30BZL1gdBb8U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exchangeRateCurrency\" : \"PEN\",\r\n    \"exchangeRate\" : 3.0,\r\n    \"type\" : \"C\",\r\n    \"originCurrency\" : \"PEN\",\r\n    \"destinationCurrency\" : \"ORG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/exchangerate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"exchangerate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/exchangerate/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqbHVuYWgiLCJzY29wZSI6WyJ3ZWJjbGllbnQiXSwiYXV0aGVudGljYXRpb25fbmFtZSI6ImpsdW5haCIsImV4cCI6MTY0ODA5ODk0MCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjU4YzI5NTcyLWQ5ZTItNGUzZi1hM2FlLWI0MzFkMWRmZTk1YSIsImNsaWVudF9pZCI6Im1pY3Jvc2VydmljaW9zIn0.uQQ5tHoPJGJui37bcp4vtWJf6z4p5wXlZ85Vt8xt9ao",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"exchangeRateCurrency\" : \"PEN\",\r\n    \"exchangeRate\" : 4.1,\r\n    \"type\" : \"V\",\r\n    \"originCurrency\" : \"CAD\",\r\n    \"destinationCurrency\" : \"PEN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/exchangerate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"exchangerate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth/token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "microservicios",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "webclient",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "jlunah",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8886/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8886",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
