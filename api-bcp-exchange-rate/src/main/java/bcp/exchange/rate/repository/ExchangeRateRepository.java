@@ -12,7 +12,7 @@ import bcp.exchange.rate.util.Queries;
 @Repository
 public interface ExchangeRateRepository extends JpaRepository<ExchangeEntity, Integer>{
 	
-	@Query(Queries.SELECT_EXCHANGE_RATE)
+	@Query(Queries.SELECT_EXCHANGE_RATE + Queries.AND_TYPE_EXCHANGE_RATE)
 	Optional<ExchangeEntity> findExchangeRate(@Param("origin") String origin, @Param("destiny") String destiny);
 	
 	@Query(Queries.SELECT_EXCHANGE_RATE	+ Queries.AND_EXCHANGE_RATE)

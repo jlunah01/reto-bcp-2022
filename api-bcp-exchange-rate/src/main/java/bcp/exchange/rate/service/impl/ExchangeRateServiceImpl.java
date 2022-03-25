@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bcp.exchange.rate.dto.ExchangeRateDto;
-import bcp.exchange.rate.dto.expose.ExchangeRateRs;
+import bcp.exchange.rate.dto.ExchangeRateSingleDto;
 import bcp.exchange.rate.entity.ExchangeEntity;
 import bcp.exchange.rate.repository.ExchangeRateRepository;
 import bcp.exchange.rate.service.ExchangeRateService;
@@ -38,14 +38,13 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	private ObjectMapper objectMapper;
 
 	@Override
-	public Optional<ExchangeRateRs> exchangeRate(BigDecimal amount, String originCurrency, String destinationCurrency) throws ServiceException{
-		LOG.info("Ingreso a Servicio");
+	public Optional<ExchangeRateSingleDto> exchangeRate(BigDecimal amount, String originCurrency, String destinationCurrency) throws ServiceException{
 		
 		String origin = StringUtils.trimToEmpty(originCurrency);
 		String destiny = StringUtils.trimToEmpty(destinationCurrency);
 		
 		
-		ExchangeRateRs response = new ExchangeRateRs();
+		ExchangeRateSingleDto response = new ExchangeRateSingleDto();
 		
 		Observable<ExchangeEntity> exchangeRateObservable = Observable.create(emitter -> {
 			Optional<ExchangeEntity> exchangeEntity = exchangeRateRepository.findExchangeRate(origin,destiny);
@@ -65,7 +64,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 				response.setDestinationCurrency(destiny);
 				response.setOriginCurrency(origin);
 				response.setExchangeRate(((ExchangeEntity) exchangeEntity).getExchangeRate());
-				response.setMessage(Constants.SUCCESSFUL_MESSAGE);
 		    	
 		    }
 
@@ -84,15 +82,17 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	}
 
 	@Override
-	public ExchangeRateDto save(ExchangeRateDto exchangeRateDto, String option) throws ServiceException {
+	public ExchangeRateDto save(ExchangeRateDto exchangeRateDto, String option, String user) throws ServiceException {
 
 		try {
 			
 			if(CrudEnum.REGISTRO.name().equalsIgnoreCase(option)) {
 				exchangeRateDto.setStatus(NumberUtils.INTEGER_ONE.toString());
 				exchangeRateDto.setRegistrationDate(LocalDate.now());
+				exchangeRateDto.setRegistrationUser(user);
 			}else if(CrudEnum.ACTUALIZACION.name().equalsIgnoreCase(option)) {
 				exchangeRateDto.setUpdateDate(LocalDate.now());
+				exchangeRateDto.setUpdateUser(user);
 			}
 			
 			ExchangeEntity exchangeEntity = this.getExchangeEntity(exchangeRateDto);
